@@ -1,7 +1,7 @@
 # 从个人工具到团队记忆：知识库搭建复盘与 Hindsight 实践
 
 > 团队分享 · 2026-11-26
-> 数据采集时间：2026-11-26 00:20（GitHub Stars 来自 shields.io，Hindsight 数据来自官方文档/博客/论文）
+> 数据采集时间：2026-11-26 13:50（GitHub Stars 来自 GitHub API，Hindsight 数据来自官方文档/博客/论文）
 
 ---
 
@@ -71,7 +71,7 @@
 
 ![GitHub Stars](./github-stars.png)
 
-图里是 Agent Memory 这条线上拿得出手的项目，外加 RAGFlow 和 GraphRAG 两个 RAG 做参照。几个值得知道的：mem0 是最出圈的一个，从 Python 库长成了平台；腾讯有两个，云团队的 Agent Memory 和微信团队的 WeKnora，后者把 RAG、Agent、自维护 Wiki 打包成了一个平台；Letta 是原来的 MemGPT；DeepWiki 和 OpenWiki 是给代码库自动生成文档的，1.3 节会讲为什么我放着不用了。
+图里是 Agent Memory 这条线上拿得出手的项目，外加 GraphRAG 做参照。几个值得知道的：mem0 是最出圈的一个，从 Python 库长成了平台；腾讯有两个，云团队的 Agent Memory 和微信团队的 WeKnora，后者把 RAG、Agent、自维护 Wiki 打包成了一个平台；Letta 是原来的 MemGPT；DeepWiki 和 OpenWiki 是给代码库自动生成文档的，1.3 节会讲为什么我放着不用了。
 
 **RAG 已经是基础设施，记忆还不是。** RAGFlow 一个项目就 95k star，说明"能问文档的机器人"早就是标配了，没有谁会因为这个觉得你厉害。但 Agent Memory 这边最高的 mem0 也才 69k，而且各家做法差别很大，没有标准答案。这对我们意味着：知识库直接选一个部署就行，不用自己造；真正值得花时间的是记忆这一层，因为它还在变。
 
@@ -395,7 +395,7 @@ hs.retain(
 
 ## 附：数据来源
 
-- GitHub Stars：shields.io 徽章接口，2026-11-26 采集，四舍五入到 0.1k
+- GitHub Stars：GitHub API，2026-11-26 采集，四舍五入到 0.1k
 - 腾讯 Agent Memory：[TencentCloud/TencentDB-Agent-Memory](https://github.com/TencentCloud/TencentDB-Agent-Memory)、[Team Memory 发布报道](https://m.ithome.com/html/0986971.htm)
 - 知识库选型参考：[2026 年 top7 本地知识库软件](https://worktile.com/solution-1/archives/180686)（Dify / RAGFlow / FastGPT / MaxKB / AnythingLLM / Open WebUI / QAnything 对比）
 - Hindsight 架构与理念：[官方文档](https://hindsight.vectorize.io/)、[Knowledge Banks 发布博文](https://hindsight.vectorize.io/blog/2026/11/24/knowledge-banks)、[Coding Agents 集成页](https://hindsight.vectorize.io/sdks/integrations/coding-agents)
