@@ -1,0 +1,117 @@
+<mxfile host="localhost">
+  <diagram id="xg45die8-5pfv" name="Page-1">
+    <mxGraphModel dx="2209" dy="866" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1984" pageHeight="496" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane1" parent="1" style="swimlane;horizontal=0;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=14;fontStyle=1;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;startSize=30;whiteSpace=wrap;html=1;" value="① 开发者侧（每人）" vertex="1">
+          <mxGeometry height="520" width="380" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" parent="lane1" style="rounded=1;arcSize=14;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Coding Agent&lt;/b&gt;" vertex="1">
+          <mxGeometry height="68" width="150" x="24" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" parent="lane1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;代码仓库&lt;/b&gt;&lt;br&gt;git 提交历史 / diff" vertex="1">
+          <mxGeometry height="76" width="150" x="24" y="176" as="geometry" />
+        </mxCell>
+        <mxCell id="plugin" parent="lane1" style="rounded=1;arcSize=14;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;hindsight-coding-agents&lt;/b&gt;&lt;br&gt;插件（hooks + MCP）" vertex="1">
+          <mxGeometry height="96" width="150" x="206" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg" parent="lane1" style="shape=document;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;coding-agent.json&lt;/b&gt;&lt;br&gt;apiUrl · bank 路由&lt;br&gt;mapPathToBank" vertex="1">
+          <mxGeometry height="90" width="150" x="206" y="304" as="geometry" />
+        </mxCell>
+        <mxCell id="lane2" parent="1" style="swimlane;horizontal=0;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=14;fontStyle=1;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;startSize=30;whiteSpace=wrap;html=1;" value="② 团队自托管" vertex="1">
+          <mxGeometry height="520" width="300" x="480" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="svc" parent="lane2" style="rounded=1;arcSize=14;fillColor=#FED7AA;strokeColor=#EA580C;strokeWidth=2.5;fontColor=#7C2D12;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Hindsight 服务&lt;/b&gt;&lt;br&gt;Docker / K8s · Postgres&lt;br&gt;内网 · 统一鉴权" vertex="1">
+          <mxGeometry height="110" width="220" x="40" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="llm" parent="lane2" style="shape=cloud;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;LLM&lt;/b&gt;&lt;br&gt;GLM / 本地模型&lt;br&gt;服务端统一配置" vertex="1">
+          <mxGeometry height="100" width="180" x="60" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="lane3" parent="1" style="swimlane;horizontal=0;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=14;fontStyle=1;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;startSize=30;whiteSpace=wrap;html=1;" value="③ Hindsight 内部" vertex="1">
+          <mxGeometry height="520" width="820" x="840" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="lane3" style="rounded=1;arcSize=14;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Hindsight API&lt;/b&gt;&lt;br&gt;REST /v1/*" vertex="1">
+          <mxGeometry height="80" width="130" x="24" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="retain" parent="lane3" style="rounded=1;arcSize=14;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=1.5;fontColor=#1E1B4B;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Retain（记）&lt;/b&gt;&lt;br&gt;LLM 抽取事实 → 去重合并" vertex="1">
+          <mxGeometry height="76" width="190" x="214" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="recall" parent="lane3" style="rounded=1;arcSize=14;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=1.5;fontColor=#1E1B4B;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Recall（忆）&lt;/b&gt;&lt;br&gt;向量 + BM25 混合检索 → 重排" vertex="1">
+          <mxGeometry height="76" width="190" x="214" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="reflect" parent="lane3" style="rounded=1;arcSize=14;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=1.5;fontColor=#1E1B4B;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Reflect（思）&lt;/b&gt;&lt;br&gt;跨记忆综合推理 → 带引用的答案" vertex="1">
+          <mxGeometry height="76" width="190" x="214" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="grpP" parent="lane3" style="rounded=1;arcSize=8;fillColor=#ECFDF5;strokeColor=#059669;dashed=1;dashPattern=4 4;fontColor=#065F46;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=6;spacingTop=4;whiteSpace=wrap;html=1;" value="个人 Bank ×N（默认，每人每仓库一个）" vertex="1">
+          <mxGeometry height="150" width="240" x="520" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pb1" parent="grpP" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="coding-agent::repo-A" vertex="1">
+          <mxGeometry height="52" width="104" x="10" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="pb2" parent="grpP" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="coding-agent::repo-B" vertex="1">
+          <mxGeometry height="52" width="104" x="126" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="pb3" parent="grpP" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="coding-agent::repo-C" vertex="1">
+          <mxGeometry height="52" width="104" x="10" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="pb4" parent="grpP" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="… 按仓库名自动分" vertex="1">
+          <mxGeometry height="52" width="104" x="126" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="grpT" parent="lane3" style="rounded=1;arcSize=8;fillColor=#ECFDF5;strokeColor=#059669;dashed=1;dashPattern=4 4;fontColor=#065F46;fontSize=11;fontStyle=1;verticalAlign=top;align=left;spacingLeft=6;spacingTop=4;whiteSpace=wrap;html=1;" value="团队 Bank（跨仓库 / 跨成员共享）" vertex="1">
+          <mxGeometry height="130" width="240" x="520" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="tb" parent="grpT" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;fontColor=#78350F;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;team::platform&lt;/b&gt;&lt;br&gt;产品线公共决策 · 约定 · 教训" vertex="1">
+          <mxGeometry height="88" width="210" x="15" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kb" parent="lane3" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Knowledge Bank&lt;/b&gt;&lt;br&gt;规范 / 手册 / 架构文档&lt;br&gt;原样保留，不经过 LLM" vertex="1">
+          <mxGeometry height="120" width="240" x="520" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.4;html=1;" target="plugin" value="每轮对话">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="repo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.75;html=1;" target="plugin" value="自动摄入 commits">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="cfg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#64748B;strokeWidth=1.5;endArrow=open;endFill=0;dashed=1;dashPattern=2 3;fontColor=#64748B;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;" target="plugin" value="配置">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="plugin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="svc" value="HTTP · token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="svc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="api" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#64748B;strokeWidth=1.5;endArrow=open;endFill=0;dashed=1;dashPattern=2 3;fontColor=#64748B;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;" target="svc" value="仅服务端调用">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.25;entryX=0;entryY=0.5;html=1;" target="retain" value="写入">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;html=1;entryX=0;entryY=0.76316;entryDx=0;entryDy=0;" target="recall" value="查询">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.75;entryX=0;entryY=0.5;html=1;" target="reflect" value="提问">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="retain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="grpP" value="存入">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="86" />
+              <mxPoint x="1190" y="115" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="recall" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="kb" value="检索">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14b" edge="1" parent="1" source="reflect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;" target="kb" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="reflect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="grpT" value="综合">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

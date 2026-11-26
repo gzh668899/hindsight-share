@@ -1,0 +1,75 @@
+<mxfile host="localhost">
+  <diagram id="llt9mgl0-f14d" name="Page-1">
+    <mxGraphModel dx="1483" dy="2251" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="agent" parent="1" style="rounded=1;arcSize=14;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Agent / 用户提问&lt;/b&gt;&lt;br&gt;&amp;quot;我的服务器还能收到更新吗？&amp;quot;" vertex="1">
+          <mxGeometry height="80" width="200" x="40" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="reflect" parent="1" style="rounded=1;arcSize=14;fillColor=#FED7AA;strokeColor=#EA580C;strokeWidth=2.5;fontColor=#7C2D12;fontSize=12;fontStyle=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;reflect(question)&lt;/b&gt;&lt;br&gt;一次调用&lt;br&gt;一个 token 预算&lt;br&gt;一套 tag 过滤" vertex="1">
+          <mxGeometry height="120" width="220" x="340" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="laneMem" parent="1" style="swimlane;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=14;fontStyle=1;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;startSize=30;whiteSpace=wrap;html=1;" value="Memory Bank（会变）" vertex="1">
+          <mxGeometry height="230" width="400" x="680" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="chats" parent="laneMem" style="rounded=1;arcSize=14;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;对话 / 提交 / PR&lt;/b&gt;&lt;br&gt;260 条历史客服对话" vertex="1">
+          <mxGeometry height="72" width="160" x="20" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="retain" parent="laneMem" style="rounded=1;arcSize=14;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;Retain → LLM 抽取&lt;/b&gt;&lt;br&gt;Consolidation 合并、修正" vertex="1">
+          <mxGeometry height="72" width="160" x="220" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lukas" parent="laneMem" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=1;dashed=1;dashPattern=3 3;fontColor=#1E3A8A;fontSize=11;whiteSpace=wrap;html=1;" value="Lukas 的服务器跑 Nextcloud 30" vertex="1">
+          <mxGeometry height="40" width="160" x="220" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="amara" parent="laneMem" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=1;dashed=1;dashPattern=3 3;fontColor=#1E3A8A;fontSize=11;whiteSpace=wrap;html=1;" value="Amara 有特批例外（tag: amara）" vertex="1">
+          <mxGeometry height="40" width="160" x="20" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="laneKb" parent="1" style="swimlane;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=14;fontStyle=1;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;startSize=30;whiteSpace=wrap;html=1;" value="Knowledge Bank（不变）" vertex="1">
+          <mxGeometry height="200" width="400" x="680" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="manual" parent="laneKb" style="rounded=1;arcSize=14;fillColor=#D1FAE5;strokeColor=#059669;strokeWidth=1.5;fontColor=#064E3B;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;手册 / 规范 / PDF&lt;/b&gt;&lt;br&gt;Nextcloud 手册 837 页 · 原样保留 · 零 LLM" vertex="1">
+          <mxGeometry height="56" width="360" x="20" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="policy" parent="laneKb" style="rounded=1;arcSize=10;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=1;fontColor=#065F46;fontSize=11;whiteSpace=wrap;html=1;" value="每个版本支持一年" vertex="1">
+          <mxGeometry height="40" width="150" x="40" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="except" parent="laneKb" style="rounded=1;arcSize=10;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=1;fontColor=#065F46;fontSize=11;whiteSpace=wrap;html=1;" value="例外条款：tag amara" vertex="1">
+          <mxGeometry height="40" width="150" x="210" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="answer" parent="1" style="rounded=1;arcSize=14;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontColor=#0F172A;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;b&gt;带引用的答案&lt;/b&gt;&lt;br&gt;不能。Lukas 的服务器是 Nextcloud 30（记忆），每个版本支持一年（手册 p.12），已于 2025-09 到期。&lt;br&gt;冲突时以文档为准，并标注记忆已过时" vertex="1">
+          <mxGeometry height="120" width="300" x="1180" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;html=1;" target="reflect" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="reflect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=0.75;exitY=0;entryX=0;entryY=0.5;html=1;" target="chats" value="检索记忆">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="reflect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=0.75;exitY=1;entryX=0;entryY=0.5;html=1;" target="manual" value="检索文档段落">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="505" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="chats" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#64748B;strokeWidth=1.5;endArrow=open;endFill=0;dashed=1;dashPattern=2 3;fontColor=#64748B;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="retain" value="存入">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="retain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#64748B;strokeWidth=1.5;endArrow=open;endFill=0;dashed=1;dashPattern=2 3;fontColor=#64748B;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;" target="lukas" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="reflect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1E293B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#334155;fontSize=11;jumpStyle=arc;jumpSize=8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;" target="answer" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontColor=#7C2D12;fontSize=11;fontStyle=2;whiteSpace=wrap;" value="记忆从不吸收文档：Consolidation 和 mental model 从不读 Knowledge Bank" vertex="1">
+          <mxGeometry height="30" width="400" x="680" y="540" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
