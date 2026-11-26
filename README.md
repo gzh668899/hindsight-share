@@ -5,12 +5,11 @@
 
 ---
 
-## 0. 一句话总结
+## 0. 开场
 
-> **代码能告诉 Agent "是什么"，但告诉不了它 "为什么"。**
-> 过去一年我试了 Code Graph、RAG 知识库、Deep Wiki 等几类工具，最后落到 Hindsight 上——它解决的不是"把文档塞给 AI"，而是**把团队做过的决定、踩过的坑、达成过的共识，在 Agent 开工之前放到它面前**。
->
-> 而且它没有抛弃知识库：**Memory Bank 管"现在什么成立"，Knowledge Bank 管"原文写了什么"，两者链接、一次查询、冲突时文档为准。** 这就是我理解的"知识库 + Agent Memory"的正确融合方式。
+代码能告诉 Agent "是什么"，但告诉不了它"为什么"。过去一年我试了 Code Graph、RAG 知识库、Deep Wiki，最后落到 Hindsight 上。它解决的不是"把文档塞给 AI"，而是把团队做过的决定、踩过的坑、达成过的共识，在 Agent 开工之前放到它面前。
+
+它也没有把知识库扔掉。Hindsight 把会变的记忆和不变的文档分成两种 bank，再链接到一起：一次查询两边都读，冲突的时候以文档为准。这是我觉得它做得最对的一件事，也是今天重点要讲的。
 
 ---
 
@@ -68,42 +67,23 @@
 
 ---
 
-## 2. GitHub 生态：一张图看清格局
+## 2. 现在到了哪一步
 
-![Agent Memory 生态一览（含代表性 RAG / 知识库对照）](./github-stars.png)
+![GitHub Stars](./github-stars.png)
 
-| 项目 | ⭐ | 路线 | 一句话 |
-|---|---:|---|---|
-| **[Hindsight](https://github.com/vectorize-io/hindsight)** | **63.3k** | **记忆服务** | **"Agent Memory That Learns"，本次主角，有论文** |
-| [mem0](https://github.com/mem0ai/mem0) | 69k | 记忆层 SDK / 服务 | "The Memory Layer for AI Agents"，最出圈的一个，从 Python 库长成平台 |
-| [Cognee](https://github.com/topoteretes/cognee) | 34k | 知识图谱记忆 | "AI memory → graphs"，图谱派代表 |
-| [Graphiti (Zep)](https://github.com/getzep/graphiti) | 33k | 时序知识图谱 | 强调时间维度："这个事实什么时候成立、什么时候被推翻" |
-| [Supermemory](https://github.com/supermemoryai/supermemory) | 32k | 记忆引擎 | "Memory & context engine"，偏消费端 / 个人 |
-| [TencentDB Agent Memory](https://github.com/TencentCloud/TencentDB-Agent-Memory) | 31k | 团队记忆 Hub | 腾讯云，90 天破 2 万 star，原生 Team Memory，CodeBuddy 用户零成本接入 |
-| [Letta](https://github.com/letta-ai/letta) | 26k | 有状态 Agent | 前 MemGPT，LLM-as-OS 的记忆分页，Agent 自己管理记忆 |
-| [WeKnora](https://github.com/Tencent/WeKnora) | 38k | Wiki 类（腾讯微信） | 企业知识平台：RAG + ReAct Agent + **自维护 Wiki** + 长期记忆，一个自托管系统全包 |
-| [DeepWiki Open](https://github.com/AsyncFuncAI/deepwiki-open) | 18k | Wiki 类 | 给仓库自动生成文档（见 1.3），严格说是"知识"不是"记忆" |
-| [OpenWiki](https://github.com/langchain-ai/openwiki) | 18k | Wiki 类 | LangChain 官方出的 CLI，和 DeepWiki 同一思路；这类"LLM-Wiki"路线见 1.3 |
-| [memU](https://github.com/NevaMind-AI/memU) | 15k | 记忆层 | 开源记忆，偏多 Agent 协作 |
-| [MemOS](https://github.com/memtensor/MemOS) | 13k | 记忆操作系统 | 把记忆当"操作系统"调度：调度、生命周期、治理 |
-| *RAGFlow* | *95k* | *RAG 知识库应用（对照）* | *深度文档理解（DeepDoc），表格 / 扫描件 / 复杂版式解析最强——知识库应用里的代表* |
-| *microsoft/graphrag* | *37k* | *图 RAG（对照）* | *微软的图 RAG 参考实现，用知识图谱做"全局性"问题——RAG 里最接近"记忆"思路的一支* |
+图里是 Agent Memory 这条线上拿得出手的项目，外加 RAGFlow 和 GraphRAG 两个 RAG 做参照。几个值得知道的：mem0 是最出圈的一个，从 Python 库长成了平台；腾讯有两个，云团队的 Agent Memory 和微信团队的 WeKnora，后者把 RAG、Agent、自维护 Wiki 打包成了一个平台；Letta 是原来的 MemGPT；DeepWiki 和 OpenWiki 是给代码库自动生成文档的，1.3 节会讲为什么我放着不用了。
 
-> 知识库那一大类（RAGFlow、AnythingLLM、Open WebUI……）绝大多数本质都是 RAG，这里只放一个应用类的加一个图 RAG 做对照；LlamaIndex 那种是构建库的框架，Dify 那种是编排平台，都不算。Wiki 类（WeKnora、DeepWiki、OpenWiki）是"预编译文档"路线，见 1.3。
+**RAG 已经是基础设施，记忆还不是。** RAGFlow 一个项目就 95k star，说明"能问文档的机器人"早就是标配了，没有谁会因为这个觉得你厉害。但 Agent Memory 这边最高的 mem0 也才 69k，而且各家做法差别很大，没有标准答案。这对我们意味着：知识库直接选一个部署就行，不用自己造；真正值得花时间的是记忆这一层，因为它还在变。
 
-**五个观察**：
+**记忆这件事，去年和今年问的问题不一样了。** 去年大家关心的是"库里有什么"——怎么把文档切好、embedding 选哪个、召回率多少。今年 Hindsight、mem0、腾讯几家都在说同一件事：Agent 经历过的东西怎么留下来、留下来的东西怎么随新信息更新、哪些该忘掉。对象从文档变成了经历。这是 RAG 和记忆最根本的区别，也是第 3 节要展开的。
 
-1. **知识库和记忆是两个品类，规模差一个量级。** RAGFlow 一个应用就 95k、Hindsight 63k——"搭一个能问文档的机器人"已经是标配基础设施，不是差异化；**记忆是正在爆发的新品类**，还没有标准答案。所以知识库我们选一个自托管部署就行，值得团队投入的是记忆这一层。
+**形态上，记忆从一个库变成了一个服务。** mem0 最早是 import 进来的 Python 包，现在主推的是平台；Hindsight 从第一天就是 API 服务；腾讯的直接叫 Memory Hub。原因不复杂：记忆如果只住在一个进程里，就只能在那个进程里用。要跨 Agent、跨会话、跨人，它就得是一个大家都能连的服务。这也是我们为什么不走本机 daemon，而是内网自托管。
 
-2. **从"检索文档"到"学习经验"。** RAG 找段落，知识图谱找关系，记忆这一代——Hindsight、mem0、腾讯——的核心词变成了 **"记住、更新、遗忘"**。重点不再是"库里有什么"，而是"Agent 经历了什么，它学到了什么"。
+**用记忆的人在变。** 以前记忆是给聊天机器人记用户偏好的，现在最大的用户是写代码的 Agent。Hindsight 官方列了 20 多个 Coding Agent 集成，腾讯 8 月发了 Team Memory，Hindsight 用 `mapPathToBank` 让多个仓库共享一个 bank。为什么是 Coding Agent？因为它最缺的就是"这个项目以前为什么这么定"的上下文，而这恰恰是代码里没有的。
 
-3. **从"嵌入式库"到"独立服务"。** mem0 早期是个 Python 库，现在主推平台；Hindsight 从第一天就是 API 服务；腾讯的直接叫 "Memory Hub"。原因很简单：**记忆要跨 Agent、跨会话、跨成员共享，就不能住在某一个进程里**。
+**还有一个变化，是我觉得最有意思的。** Hindsight 11 月 24 号发了 Knowledge Banks，把"会变的记忆"和"不变的文档"分成两种 bank 再链接起来；腾讯的四类资产里也是把 Chat Memory 和 LLM-Wiki、Code-Graph 分开放。两家不约而同在干同一件事：承认记忆和知识不是一回事，不该硬塞在一起，但又必须一起用。这就是 3.4 节要讲的重点。
 
-4. **Coding Agent 成了第一入口，"团队记忆"成了新关键词。** Hindsight 官方列了 20+ 个 Coding Agent 集成；腾讯 8 月发 Team Memory；Hindsight 用 `mapPathToBank` 做多仓库共享。**记忆的价值在共享时才指数增长**——一个人记得的是自己的决定，十个人记得的是整个团队的。
-
-5. **"记忆"和"知识"开始分家。** Hindsight 11 月 24 日刚发 [Knowledge Banks](https://hindsight.vectorize.io/blog/2026/11/24/knowledge-banks)：**Memory Bank 管"会变的东西"，Knowledge Bank 管"不变的东西"**，链接后一次查询同时读。腾讯也是四类资产：Chat Memory、Skill、**LLM-Wiki**、**Code-Graph**——两家都在把记忆和知识分开管、一起用。这就是 3.4 要讲的重点。
-
-> 另外一个数字：[AMB sdebench](https://agentmemorybenchmark.ai/dataset/sdebench) 上，有无记忆每个 Agent **准确率都是 60-61/61**——好 Agent 本来就能做对。差距在**纠错次数**（Claude Code 0.85 → 0.36 次/任务）和**成本**（Codex $0.577 → $0.276/任务）。**记忆的价值不是让它更聪明，是让它少猜、少返工。**
+最后一个数字，关于记忆到底值不值。[AMB 的 sdebench](https://agentmemorybenchmark.ai/dataset/sdebench) 拿 61 个真实仓库任务跑 Claude Code、Codex、opencode，有记忆和没记忆比：**准确率都是 60 到 61 题，几乎没差**。好 Agent 本来就能做对。差的是纠错次数（Claude Code 从每任务 0.85 次降到 0.36）和成本（Codex 从 $0.577 降到 $0.276）。所以记忆的价值不在于让 Agent 更聪明，在于让它少猜、少返工。
 
 ---
 
